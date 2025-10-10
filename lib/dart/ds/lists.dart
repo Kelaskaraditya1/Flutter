@@ -55,8 +55,11 @@ void main(){
 
   // For Each Loop:
 
-  for(var value in list)
-    stdout.write("$value ");
+  // for(var value in list)
+  //   stdout.write("$value ");
+
+
+  list.forEach((value)=>print(value));
 
 
 
