@@ -62,7 +62,7 @@ void main(){
   print("Addition: ${mobilePhone.addition(a, b)}");
   print("Subtraction: ${mobilePhone.subtraction(a, b)}");
   print("Multiplication: ${mobilePhone.multiplication(a, b)}");
-  print("Ratio: ${mobilePhone.ratio(a, b)}");
+  print("Ratio: ${mobilePhone .ratio(a, b)}");
 
 
 }
