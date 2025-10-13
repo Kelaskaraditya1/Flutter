@@ -15,7 +15,7 @@ void main(){
   /* for searching in a list.
   we have to use the where function.
   where((obj)=> condition)  basically we are streaming on the list and we get a object which points to the current element and we have to apply some condition.
-  it returns a itreable of items and it we use .toList() than it converts it to a list and returns.
+  it returns a itreble of items and it we use .toList() than it converts it to a list and returns.
    */
   //
   // var result = list.where((name)=> name=="Aditya" || name=="Sandesh")

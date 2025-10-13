@@ -4,7 +4,7 @@ import 'package:flutter_app/dart/exceptionHandling/Exceptions.dart';
 
 class Calculator{
 
-  static int? addition(int? a, int? b){
+  static int? addition(int? a, int? b) {
 
     if(a!>100000 || b!>100000)
       throw MaxRangeException();

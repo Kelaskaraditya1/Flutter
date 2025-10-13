@@ -41,7 +41,7 @@ class Employee{
   *
   *     Default/No Parameterised Constructor:
   *
-  *    Employee.{siffixName}(){
+  *    Employee.{suffixName}(){
   *     ....
   *     }
   *
