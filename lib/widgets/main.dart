@@ -283,18 +283,120 @@ class _FloatActionButtonWidgetState extends State<FloatActionButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(""),
-      ),
-        floatingActionButton:FloatingActionButton(onPressed: (){
-        print("Floating Action Button");
+      appBar: AppBar(title: Text("")),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("Floating Action Button");
         },
-        child: Icon(Icons.add,
-        size: 30,
-          color: Colors.black,
+        backgroundColor: Colors.greenAccent,
+        child: Icon(Icons.add, size: 30, color: Colors.black),
+      ),
+    );
+  }
+}
+
+// <---------------------------------------------------------------------------------------Container Widget----------------------------------------------------------------------------->
+
+class ContainerWidget extends StatelessWidget {
+  const ContainerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Container"),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Container(
+          height: 200,
+          width: 200,
+          // color: Colors.blue,
+          child: Text(
+            "Ironman",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+          ),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            // borderRadius: BorderRadius.circular(5), if shape of container is Circle than don't use borderRadius.
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              colors: [Colors.red, Colors.orange, Colors.deepOrange],
+            ),
+          ),
+          alignment: Alignment.center,
         ),
-          backgroundColor: Colors.greenAccent,
-        )
+      ),
+    );
+  }
+}
+
+class ContainerWidgetForMarginAndPadding extends StatelessWidget {
+  const ContainerWidgetForMarginAndPadding({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Margin and Padding"),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Container(
+          height: 300,
+          width: 300,
+          color: Colors.blue,
+          alignment: Alignment.center,
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            color: Colors.red,
+            margin: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            child: Text(
+              "Ironman",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ImageContainerWidget extends StatelessWidget {
+  const ImageContainerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Image Container"),
+        backgroundColor: Colors.blue,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 200,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.red,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Image(
+            image: NetworkImage(
+              "https://fastly.picsum.photos/id/738/200/300.jpg?hmac=x-GpfBAQrKyKnrXqne7UJ3rdVnkGD7e-uRhpCcZWb9I",
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -308,9 +410,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: FloatActionButtonWidget(),
-      ),
+      home: Scaffold(body: ImageContainerWidget()),
     );
   }
 }
