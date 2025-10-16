@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart' hide Size;
 import 'package:flutter/material.dart' hide Size;
+import 'package:flutter/material.dart' as material;
 
 // <--------------------------------------------------------StateLess Widget----------------------------------------------------------------------------->
 
@@ -174,7 +174,6 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         onLongPress: () {
           print("Long Pressed");
         },
-        child: Text("Submit"),
         style: ElevatedButton.styleFrom(
           // For Styling the Button
           backgroundColor: Colors.blue,
@@ -187,6 +186,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        child: Text("Submit"),
         // For Styling Button
       ),
     );
@@ -312,11 +312,6 @@ class ContainerWidget extends StatelessWidget {
         child: Container(
           height: 200,
           width: 200,
-          // color: Colors.blue,
-          child: Text(
-            "Ironman",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-          ),
           decoration: BoxDecoration(
             color: Colors.blue,
             // borderRadius: BorderRadius.circular(5), if shape of container is Circle than don't use borderRadius.
@@ -326,6 +321,11 @@ class ContainerWidget extends StatelessWidget {
             ),
           ),
           alignment: Alignment.center,
+          // color: Colors.blue,
+          child: Text(
+            "Ironman",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+          ),
         ),
       ),
     );
@@ -381,21 +381,241 @@ class ImageContainerWidget extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          height: 100,
+          height: 200,
           width: 200,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.red,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.black, width: 5),
           ),
           child: Image(
             image: NetworkImage(
               "https://fastly.picsum.photos/id/738/200/300.jpg?hmac=x-GpfBAQrKyKnrXqne7UJ3rdVnkGD7e-uRhpCcZWb9I",
             ),
+            height: double.infinity,
+            width: double.infinity,
             fit: BoxFit.cover,
           ),
         ),
+      ),
+    );
+  }
+}
+
+// <---------------------------------------------------------------------------------------Column Widget----------------------------------------------------------------------------->
+
+class ColumnWidget extends StatelessWidget {
+  const ColumnWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Column Widget"),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+      ),
+      body: Column(
+        spacing: 20,
+        // for giving spacing between the elements.
+        mainAxisAlignment: MainAxisAlignment.center,
+        // In case of Column this is the Y, used for Alignment on this axis, so Top => Start, End => Bottom
+        crossAxisAlignment: CrossAxisAlignment.center,
+        // In case of Column this is the X, used for Alignment on this axis, so Start => Start, End => Bottom, also this is aligned as per the maximum of the width.
+        children: [
+          Text("Login Screen"),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Submit"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(0),
+              ),
+            ),
+          ),
+          Container(
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+              color: Colors.greenAccent,
+              shape: BoxShape.circle,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// <---------------------------------------------------------------------------------------Row Widget----------------------------------------------------------------------------->
+
+class RowWidget extends StatelessWidget {
+  const RowWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Row Widget"),
+        backgroundColor: Colors.red,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Row(
+          spacing: 10,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(height: 500, width: 100, color: Colors.red),
+            Container(height: 100, width: 100, color: Colors.blue),
+            Container(height: 100, width: 100, color: Colors.green),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RowAndColumnWidget extends StatelessWidget {
+  const RowAndColumnWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("RowAndColumn Widget"),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+      ),
+      body: Column(
+        spacing: 10,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(height: 1, width: double.infinity),
+          Text("Login Screen", textAlign: TextAlign.center),
+          Row(
+            spacing: 10,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(height: 100, width: 100, color: Colors.red),
+              Container(height: 100, width: 100, color: Colors.blue),
+              Container(height: 100, width: 100, color: Colors.green),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// <---------------------------------------------------------------TextField Widget----------------------------------------------------------------------------->
+
+class TextFieldWidget extends StatefulWidget {
+  const TextFieldWidget({super.key});
+
+  @override
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+}
+
+class _TextFieldWidgetState extends State<TextFieldWidget> {
+  var visibilityIcon = Icons.visibility;
+  var emailController = material.TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("TextField"),
+        backgroundColor: Colors.red,
+        centerTitle: true,
+      ),
+      body: Container(
+        margin: EdgeInsets.only(left: 10, right: 10),
+        child: TextField(
+          controller: emailController,
+          // for getting the text from the TextField.
+          obscureText: true,
+          // for hiding the text, password
+          obscuringCharacter: '*',
+          // Can give custom Character,
+          keyboardType: material.TextInputType.name,
+          // for giving relevant keyboard.
+          decoration: InputDecoration(
+            label: Text("Email"),
+            hintText: "Enter Email",
+            contentPadding: EdgeInsets.all(0),
+            // border: InputBorder.none,// for Removing the border
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            // For giving Rounder Border.
+            prefixIcon: Icon(Icons.email),
+            prefixIconColor: Colors.black,
+            suffixIcon: material.IconButton(
+              onPressed: () {
+                if (visibilityIcon == Icons.visibility) {
+                  setState(() {
+                    visibilityIcon = Icons.visibility_off;
+                  });
+                } else {
+                  setState(() {
+                    visibilityIcon = Icons.visibility;
+                  });
+                }
+                print(emailController.text);
+              },
+              icon: Icon(visibilityIcon),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// <---------------------------------------------------------------Gesture Detector Widget----------------------------------------------------------------------------->
+
+class GestureDetectorWidget extends StatelessWidget {
+  const GestureDetectorWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Gesture Decorator"),
+        backgroundColor: Colors.orangeAccent,
+        centerTitle: true,
+      ),
+      body: material.Stack(
+        children: [
+          Container(
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.green,
+            ),
+            alignment: Alignment.bottomRight,
+            child: GestureDetector(
+              child: Container(
+                height: 50,
+                width: 50,
+                margin: EdgeInsets.only(bottom: 20),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.blue,
+                ),
+                child: Icon(Icons.add, color: Colors.white, size: 40),
+              ),
+              onTap: () {
+                print("Image Uploaded");
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -410,7 +630,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: ImageContainerWidget()),
+      home: Scaffold(body: GestureDetectorWidget()),
     );
   }
 }
