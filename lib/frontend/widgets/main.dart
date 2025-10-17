@@ -290,6 +290,7 @@ class _FloatActionButtonWidgetState extends State<FloatActionButtonWidget> {
         },
         backgroundColor: Colors.greenAccent,
         child: Icon(Icons.add, size: 30, color: Colors.black),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
       ),
     );
   }
@@ -621,6 +622,57 @@ class GestureDetectorWidget extends StatelessWidget {
   }
 }
 
+// <---------------------------------------------------------------Stack And Positioned Widget----------------------------------------------------------------------------->
+/* 1) Stack: Used to stack Widgets over one another
+*  2) Positioned: works like a offset, the default position of any widget is (0,0) top left corner
+*                 if we put right:0 than it will move towards right, if bottom=0 than it will move towards bottom
+*                 Now we can also give +ve and -ve values to this, if +ve value than it will move in the preferred direction, and if -ve value than it will move in opposite direction.
+* */
+
+class StackAndPosition extends StatelessWidget {
+  const StackAndPosition({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Stack and Position"),
+        backgroundColor: Colors.deepOrangeAccent,
+        centerTitle: true,
+      ),
+      body: Container(
+        height: 210,
+        width: 210,
+        child: Stack(
+          children: [
+            Container(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+            ),
+            material.Positioned(
+              right: -20,
+              bottom: 10,
+              child: Container(
+                height: 80,
+                width: 80,
+                margin: EdgeInsets.only(bottom: 10, left: 50),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // <---------------------------------------------------------------My-App Widget----------------------------------------------------------------------------->
 
 class MyApp extends StatelessWidget {
@@ -630,7 +682,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: GestureDetectorWidget()),
+      home: Scaffold(body: StackAndPosition()),
     );
   }
 }
