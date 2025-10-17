@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/main.dart' as material;
+import 'package:flutter_app/frontend/widgets/main.dart' as material;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
