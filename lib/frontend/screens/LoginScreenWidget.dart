@@ -20,11 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Login Screen"),
-          backgroundColor: Colors.grey,
-          centerTitle: true,
-        ),
         body: Container(
           height: double.infinity,
           width: double.infinity,
@@ -78,6 +73,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Container(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text("Forgot Password"),
+                  ),
+                  alignment: Alignment.centerRight,
+                ),
+                Container(
                   width: double.infinity,
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: ElevatedButton(
@@ -100,6 +102,30 @@ class _LoginScreenState extends State<LoginScreen> {
                       fixedSize: Size(double.infinity, 20),
                     ),
                   ),
+                ),
+                SizedBox(height: 100),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Signup",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
