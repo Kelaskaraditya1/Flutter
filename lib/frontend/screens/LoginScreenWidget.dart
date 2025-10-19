@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/frontend/widgets/main.dart' as material;
+import 'package:flutter_app/frontend/screens/RegisterScreenWidget.dart';
+import 'package:flutter_app/frontend/screens/home_screen_widget.dart';
+import 'package:flutter_app/keys/Keys.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final String data;
+
+  const LoginScreen({super.key, required this.data});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -87,6 +91,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       print(
                         "Email: ${emailController.text} , Password: ${passwordController.text}",
                       );
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) {
+                      //       return HomeScreenWidget();
+                      //     },
+                      //   ),
+                      // );
+
+                      Navigator.pushNamed(
+                        context,
+                        Keys.HOME_SCREEN_ROUTE,
+                        arguments: {
+                          "email": emailController.text,
+                          "password": passwordController.text,
+                        },
+                      );
+
                       setState(() {
                         emailController.clear();
                         passwordController.clear();
@@ -116,7 +138,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context){
+                        //       return RegisterScreen();
+                        //       }
+                        //     )
+                        // );
+
+                        Navigator.pushNamed(context, Keys.SIGNUP_SCREEN_ROUTE);
+                      },
                       child: Text(
                         "Signup",
                         style: TextStyle(
@@ -134,8 +165,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(LoginScreen());
 }

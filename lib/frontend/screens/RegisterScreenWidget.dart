@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/frontend/screens/LoginScreenWidget.dart';
+import 'package:flutter_app/frontend/screens/home_screen_widget.dart';
+import 'package:flutter_app/keys/Keys.dart';
+
+import '../widgets/main.dart' as material;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -188,12 +193,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                           print(response);
                         }
+                        // nameController.clear();
+                        // emailController.clear();
+                        // phonoNoController.clear();
+                        // usernameController.clear();
+                        // passwordController.clear();
 
-                        nameController.clear();
-                        emailController.clear();
-                        phonoNoController.clear();
-                        usernameController.clear();
-                        passwordController.clear();
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return HomeScreenWidget();
+                        //     },
+                        //   ),
+                        // );
+
+                        Navigator.pushReplacementNamed(
+                          context,
+                          Keys.HOME_SCREEN_ROUTE,
+                          arguments: {
+                            "email": emailController.text,
+                            "password": passwordController.text,
+                          },
+                        );
                       },
                       child: Text(
                         "SignUp",
@@ -224,7 +246,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context){
+                          //      return LoginScreen(data: "Aditya");
+                          //     })
+                          // );
+
+                          Navigator.pushNamed(context, Keys.LOGIN_SCREEN_ROUTE);
+                        },
                         child: Text(
                           "Signup",
                           style: TextStyle(
@@ -243,8 +273,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(RegisterScreen());
 }

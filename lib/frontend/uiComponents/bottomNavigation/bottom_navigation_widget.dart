@@ -12,7 +12,11 @@ class BottomNavigationWidget extends StatefulWidget {
 
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   var currentIndex = 0;
-  var fragments = [SplashScreenWidget(), LoginScreen(), RegisterScreen()];
+  var fragments = [
+    SplashScreenWidget(),
+    LoginScreen(data: 'Aditya'),
+    RegisterScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
