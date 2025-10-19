@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/frontend/routes/Routes.dart';
 import 'package:flutter_app/frontend/screens/LoginScreenWidget.dart';
 import 'package:flutter_app/frontend/screens/home_screen_widget.dart';
 
@@ -46,24 +47,10 @@ main() {
       debugShowCheckedModeBanner: false,
       home: SplashScreenWidget(),
       // routes: getRoutes(),
-      initialRoute: "/splashScreen",
+      initialRoute: Keys.SPLASH_SCREEN_ROUTE,
       routes: getRoutes(),
       onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case ("/homeScreen"):
-            {
-              Map<String, Object> data =
-                  settings.arguments as Map<String, Object>;
-              return MaterialPageRoute(
-                builder: (context) {
-                  return HomeScreenWidget(
-                    email: data["email"].toString(),
-                    password: data["password"].toString(),
-                  );
-                },
-              );
-            }
-        }
+        return Routes.getDynamicRoutes(settings);
       },
     ),
   );

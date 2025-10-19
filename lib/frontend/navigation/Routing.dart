@@ -9,7 +9,7 @@ import '../screens/LoginScreenWidget.dart';
 Map<String, WidgetBuilder> getRoutes() {
   return {
     Keys.SPLASH_SCREEN_ROUTE: (context) => SplashScreenWidget(),
-    Keys.LOGIN_SCREEN_ROUTE: (context) => LoginScreen(data: "Aditya"),
+    Keys.LOGIN_SCREEN_ROUTE: (context) => LoginScreen(),
     Keys.SIGNUP_SCREEN_ROUTE: (context) => RegisterScreen(),
   };
 }

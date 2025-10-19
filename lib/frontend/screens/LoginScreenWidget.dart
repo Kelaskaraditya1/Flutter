@@ -5,9 +5,7 @@ import 'package:flutter_app/frontend/screens/home_screen_widget.dart';
 import 'package:flutter_app/keys/Keys.dart';
 
 class LoginScreen extends StatefulWidget {
-  final String data;
-
-  const LoginScreen({super.key, required this.data});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
