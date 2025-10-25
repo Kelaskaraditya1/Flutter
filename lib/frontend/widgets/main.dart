@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart' hide Size;
 import 'package:flutter/material.dart' as material;
+import 'package:intl/intl.dart';
 
 // <--------------------------------------------------------StateLess Widget----------------------------------------------------------------------------->
 
@@ -673,6 +674,74 @@ class StackAndPosition extends StatelessWidget {
   }
 }
 
+// <---------------------------------------------------------------DateAndTimePicker----------------------------------------------------------------------------->
+
+class DateAndTimePicker extends StatefulWidget {
+  const DateAndTimePicker({super.key});
+
+  @override
+  State<DateAndTimePicker> createState() => _DateAndTimePickerState();
+}
+
+class _DateAndTimePickerState extends State<DateAndTimePicker> {
+  // Move these OUTSIDE build() method - they should be class-level variables
+  DateTime? selectedDate = DateTime.now();
+  TimeOfDay? selectedTime = TimeOfDay.now();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              // await OUTSIDE setState
+              final pickedDate = await showDatePicker(
+                context: context,
+                firstDate: DateTime.now().subtract(Duration(days: 365 * 100)),
+                lastDate: DateTime.now().add(Duration(days: 365 * 10)),
+              );
+
+              // Then use setState synchronously
+              if (pickedDate != null) {
+                DateTime formatedDate =
+                    DateFormat("dd-MM-yyyy").format(pickedDate) as DateTime;
+                setState(() {
+                  selectedDate = formatedDate;
+                });
+              }
+              print(selectedDate);
+            },
+            child: Text("Pick Date"),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 10, bottom: 10),
+            child: ElevatedButton(
+              onPressed: () async {
+                final pickedTime = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+
+                if (pickedTime != null) {
+                  setState(() {
+                    selectedTime = pickedTime;
+                  });
+                }
+                print(selectedTime?.format(context));
+              },
+              child: Text("Pick Time"),
+            ),
+          ),
+
+          Text("Date: $selectedDate \n Time: $selectedTime"),
+        ],
+      ),
+    );
+  }
+}
+
 // <---------------------------------------------------------------My-App Widget----------------------------------------------------------------------------->
 
 class MyApp extends StatelessWidget {
@@ -682,7 +751,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: StackAndPosition()),
+      home: Scaffold(body: Center(child: DateAndTimePicker())),
     );
   }
 }
